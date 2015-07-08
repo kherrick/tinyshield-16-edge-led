@@ -1,3 +1,5 @@
+//https://tiny-circuits.com/learn/tinyshield-led16
+
 void setup()
 {
   // uncomment to setup logging to the Tools > Serial Monitor
@@ -9,23 +11,117 @@ void setup()
 
 void loop()
 {
-  clockWiseCircle();
-  counterClockWiseCircle();
+  // run the functions you want here...
+  // everyOtherOneOddClockWise(20);
+  // everyOtherOneOddCounterClockWise(20);
+  // everyOtherOneEvenClockWise(20);
+  // everyOtherOneEvenCounterClockWise(20);
+  // clockWiseCircle(20);
+  // counterClockWiseCircle(20);
 }
 
-void clockWiseCircle()
+void everyOtherOneOddClockWise(int delayTime)
+{
+  LedOn(1);
+  delay(delayTime);
+  LedOn(3);
+  delay(delayTime);
+  LedOn(5);
+  delay(delayTime);
+  LedOn(7);
+  delay(delayTime);
+  LedOn(9);
+  delay(delayTime);
+  LedOn(11);
+  delay(delayTime);
+  LedOn(13);
+  delay(delayTime);
+  LedOn(15);
+  delay(delayTime);
+
+}
+
+void everyOtherOneOddCounterClockWise(int delayTime)
+{
+  LedOn(15);
+  delay(delayTime);
+  LedOn(13);
+  delay(delayTime);
+  LedOn(11);
+  delay(delayTime);
+  LedOn(9);
+  delay(delayTime);
+  LedOn(7);
+  delay(delayTime);
+  LedOn(5);
+  delay(delayTime);
+  LedOn(3);
+  delay(delayTime);
+  LedOn(1);
+  delay(delayTime);
+}
+
+void everyOtherOneEvenClockWise(int delayTime)
+{
+  LedOn(2);
+  delay(delayTime);
+  LedOn(4);
+  delay(delayTime);
+  LedOn(6);
+  delay(delayTime);
+  LedOn(8);
+  delay(delayTime);
+  LedOn(10);
+  delay(delayTime);
+  LedOn(12);
+  delay(delayTime);
+  LedOn(14);
+  delay(delayTime);
+  LedOn(16);
+  delay(delayTime);
+}
+
+void everyOtherOneEvenCounterClockWise(int delayTime)
+{
+  LedOn(16);
+  delay(delayTime);
+  LedOn(14);
+  delay(delayTime);
+  LedOn(12);
+  delay(delayTime);
+  LedOn(10);
+  delay(delayTime);
+  LedOn(8);
+  delay(delayTime);
+  LedOn(6);
+  delay(delayTime);
+  LedOn(4);
+  delay(delayTime);
+  LedOn(2);
+  delay(delayTime);
+}
+
+void clockWiseCircle(int delayTime)
 {
   for (int i=1; i<=16; i++) {
     LedOn(i);
-    delay(20);
+    delay(delayTime);
   }
 }
 
-void counterClockWiseCircle()
+void counterClockWiseCircle(int delayTime)
 {
   for (int i=16; i>=1; i--) {
     LedOn(i);
-    delay(20);
+    delay(delayTime);
+  }
+}
+
+void LedsOff()
+{
+  for (int i=5; i<10; i++) {
+    pinMode(i, INPUT);
+    digitalWrite(i, LOW);
   }
 }
 
