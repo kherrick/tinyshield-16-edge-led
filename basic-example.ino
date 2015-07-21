@@ -6,152 +6,175 @@ void setup()
   // Serial.begin(9600);
 
   // pass a zero to turn all LEDs off
-  LedOn(0);
+  setLed(0);
 }
 
 void loop()
 {
   // run the functions you want here...
-  // everyOtherOneOddClockWise(20);
-  // everyOtherOneOddCounterClockWise(20);
-  // everyOtherOneEvenClockWise(20);
-  // everyOtherOneEvenCounterClockWise(20);
-  // clockWiseCircle(20);
-  // counterClockWiseCircle(20);
+  // setEveryOtherOddLedClockwise(20);
+  // setEveryOtherOddLedCounterClockwise(20);
+
+  // setEveryOtherEvenLedClockwise(20);
+  // setEveryOtherEvenLedCounterClockwise(20);
+
+  // stepClockwiseCircle(20);
+  // stepCounterClockwiseCircle(20);
+
+  // stepLedGaugeRangeClockwiseFromStart(1, 16);
+  // stepLedGaugeRangeClockwiseFromEnd(16, 1);
 }
 
-void everyOtherOneOddClockWise(int delayTime)
+void setLedRaw (int px, int wx, int py, int wy, int m5, int m6, int m7, int  m8, int m9)
 {
-  LedOn(1);
-  delay(delayTime);
-  LedOn(3);
-  delay(delayTime);
-  LedOn(5);
-  delay(delayTime);
-  LedOn(7);
-  delay(delayTime);
-  LedOn(9);
-  delay(delayTime);
-  LedOn(11);
-  delay(delayTime);
-  LedOn(13);
-  delay(delayTime);
-  LedOn(15);
-  delay(delayTime);
-
+  digitalWrite(px, wx);
+  digitalWrite(py, wy);
+  pinMode(5, m5);
+  pinMode(6, m6);
+  pinMode(7, m7);
+  pinMode(8, m8);
+  pinMode(9, m9);
 }
 
-void everyOtherOneOddCounterClockWise(int delayTime)
+void setLed (int i)
 {
-  LedOn(15);
-  delay(delayTime);
-  LedOn(13);
-  delay(delayTime);
-  LedOn(11);
-  delay(delayTime);
-  LedOn(9);
-  delay(delayTime);
-  LedOn(7);
-  delay(delayTime);
-  LedOn(5);
-  delay(delayTime);
-  LedOn(3);
-  delay(delayTime);
-  LedOn(1);
-  delay(delayTime);
+  switch (i) {
+    case 1: setLedRaw(5, HIGH, 6, LOW, OUTPUT, OUTPUT, INPUT, INPUT, INPUT); break;
+    case 2: setLedRaw(6, HIGH, 5, LOW, OUTPUT, OUTPUT, INPUT, INPUT, INPUT); break;
+    case 3: setLedRaw(5, HIGH, 7, LOW, OUTPUT, INPUT, OUTPUT, INPUT, INPUT); break;
+    case 4: setLedRaw(7, HIGH, 5, LOW, OUTPUT, INPUT, OUTPUT, INPUT, INPUT); break;
+    case 5: setLedRaw(6, HIGH, 7, LOW, INPUT, OUTPUT, OUTPUT, INPUT, INPUT); break;
+    case 6: setLedRaw(7, HIGH, 6, LOW, INPUT, OUTPUT, OUTPUT, INPUT, INPUT); break;
+    case 7: setLedRaw(6, HIGH, 8, LOW, INPUT, OUTPUT, INPUT, OUTPUT, INPUT); break;
+    case 8: setLedRaw(8, HIGH, 6, LOW, INPUT, OUTPUT, INPUT, OUTPUT, INPUT); break;
+    case 9: setLedRaw(5, HIGH, 8, LOW, OUTPUT, INPUT, INPUT, OUTPUT, INPUT); break;
+    case 10: setLedRaw(8, HIGH, 5, LOW, OUTPUT, INPUT, INPUT, OUTPUT, INPUT); break;
+    case 11: setLedRaw(8, HIGH, 7, LOW, INPUT, INPUT, OUTPUT, OUTPUT, INPUT); break;
+    case 12: setLedRaw(7, HIGH, 8, LOW, INPUT, INPUT, OUTPUT, OUTPUT, INPUT); break;
+    case 13: setLedRaw(9, HIGH, 7, LOW, INPUT, INPUT, OUTPUT, INPUT, OUTPUT); break;
+    case 14: setLedRaw(7, HIGH, 9, LOW, INPUT, INPUT, OUTPUT, INPUT, OUTPUT); break;
+    case 15: setLedRaw(9, HIGH, 8, LOW, INPUT, INPUT, INPUT, OUTPUT, OUTPUT); break;
+    case 16: setLedRaw(8, HIGH, 9, LOW, INPUT, INPUT, INPUT, OUTPUT, OUTPUT); break;
+    default: setLedRaw(5, LOW, 6, LOW, OUTPUT, OUTPUT, INPUT, INPUT, INPUT); // off
+  }
 }
 
-void everyOtherOneEvenClockWise(int delayTime)
+void setEveryOtherOddLedClockwise(int delayTime)
 {
-  LedOn(2);
+  setLed(1);
   delay(delayTime);
-  LedOn(4);
+  setLed(3);
   delay(delayTime);
-  LedOn(6);
+  setLed(5);
   delay(delayTime);
-  LedOn(8);
+  setLed(7);
   delay(delayTime);
-  LedOn(10);
+  setLed(9);
   delay(delayTime);
-  LedOn(12);
+  setLed(11);
   delay(delayTime);
-  LedOn(14);
+  setLed(13);
   delay(delayTime);
-  LedOn(16);
-  delay(delayTime);
-}
-
-void everyOtherOneEvenCounterClockWise(int delayTime)
-{
-  LedOn(16);
-  delay(delayTime);
-  LedOn(14);
-  delay(delayTime);
-  LedOn(12);
-  delay(delayTime);
-  LedOn(10);
-  delay(delayTime);
-  LedOn(8);
-  delay(delayTime);
-  LedOn(6);
-  delay(delayTime);
-  LedOn(4);
-  delay(delayTime);
-  LedOn(2);
+  setLed(15);
   delay(delayTime);
 }
 
-void clockWiseCircle(int delayTime)
+void setEveryOtherOddLedCounterClockwise(int delayTime)
 {
-  for (int i=1; i<=16; i++) {
-    LedOn(i);
+  setLed(15);
+  delay(delayTime);
+  setLed(13);
+  delay(delayTime);
+  setLed(11);
+  delay(delayTime);
+  setLed(9);
+  delay(delayTime);
+  setLed(7);
+  delay(delayTime);
+  setLed(5);
+  delay(delayTime);
+  setLed(3);
+  delay(delayTime);
+  setLed(1);
+  delay(delayTime);
+}
+
+void setEveryOtherEvenLedClockwise(int delayTime)
+{
+  setLed(2);
+  delay(delayTime);
+  setLed(4);
+  delay(delayTime);
+  setLed(6);
+  delay(delayTime);
+  setLed(8);
+  delay(delayTime);
+  setLed(10);
+  delay(delayTime);
+  setLed(12);
+  delay(delayTime);
+  setLed(14);
+  delay(delayTime);
+  setLed(16);
+  delay(delayTime);
+}
+
+void setEveryOtherEvenLedCounterClockwise(int delayTime)
+{
+  setLed(16);
+  delay(delayTime);
+  setLed(14);
+  delay(delayTime);
+  setLed(12);
+  delay(delayTime);
+  setLed(10);
+  delay(delayTime);
+  setLed(8);
+  delay(delayTime);
+  setLed(6);
+  delay(delayTime);
+  setLed(4);
+  delay(delayTime);
+  setLed(2);
+  delay(delayTime);
+}
+
+void stepClockwiseCircle(int delayTime)
+{
+  for (int i = 1; i <= 16; i++) {
+    setLed(i);
     delay(delayTime);
   }
 }
 
-void counterClockWiseCircle(int delayTime)
+void stepCounterClockwiseCircle(int delayTime)
 {
-  for (int i=16; i>=1; i--) {
-    LedOn(i);
+  for (int i = 16; i >= 1; i--) {
+    setLed(i);
     delay(delayTime);
   }
 }
 
-void LedsOff()
+void setLedGauge (int value)
 {
-  for (int i=5; i<10; i++) {
-    pinMode(i, INPUT);
-    digitalWrite(i, LOW);
+  const int dt = 100;
+  for (int t = 0; t < dt; t++) {
+    for (int i = 1; i <= value; i++) {
+      setLed(i);
+    }
   }
 }
 
-void LedOn(int ledNum)
+void stepLedGaugeRangeClockwiseFromStart(int start, int stop)
 {
-  for (int i=5; i<10; i++) {
-    // uncomment to setup logging to the Tools > Serial Monitor
-    // Serial.print(i);
-
-    pinMode(i, INPUT);
-    digitalWrite(i, LOW);
+  for (int i = start; i <= stop; i++) {
+    setLedGauge(i);
   }
+}
 
-  if (ledNum<1 || ledNum>16) {
-    return;
+void stepLedGaugeRangeClockwiseFromEnd(int start, int stop)
+{
+  for (int i = start; i >= stop; i--) {
+    setLedGauge(i);
   }
-
-  char highpin[16] = {
-    5,6,5,7,6,7,6,8,5,8,8,7,9,7,9,8
-  };
-
-  char lowpin[16] = {
-    6,5,7,5,7,6,8,6,8,5,7,8,7,9,8,9
-  };
-
-  ledNum--;
-
-  digitalWrite(highpin[ledNum],HIGH);
-  digitalWrite(lowpin[ledNum],LOW);
-
-  pinMode(highpin[ledNum],OUTPUT);
-  pinMode(lowpin[ledNum],OUTPUT);
 }
